@@ -8,7 +8,7 @@ function App() {
   const onInit = useCallback(({ methods: { on } }: any) => {
     on('sort:beforeCreate', ({ sortableParams }: any) => {
       console.log(`>>> onSortBefore change sortable option.`);
-      sortableParams.animation = 600;
+      sortableParams.animation = 400;
     });
     on('sort:sort', console.log);
   }, []);

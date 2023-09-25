@@ -1,5 +1,9 @@
+/**
+ * @file 支持元素拖动排序
+ */
 import type { Item, Plugin } from '@/components/List';
 import Sortable from 'sortablejs';
+import './styles.less';
 
 export interface SorterItem extends Item {
   sort?: number;
