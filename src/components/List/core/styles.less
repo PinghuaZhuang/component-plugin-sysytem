@@ -1,0 +1,16 @@
+@border: 1px solid gray;
+
+.normal-list {
+  border: @border;
+  counter-reset: main;
+
+  .normal-list-item {
+    padding: 10px;
+
+    &::before {
+      white-space: pre;
+      content: counter(main)":  ";
+      counter-increment: main;
+    }
+  }
+}
