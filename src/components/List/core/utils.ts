@@ -2,6 +2,13 @@
 import { extend } from 'lodash';
 import { EventEmitter } from 'events';
 
+// export function assgin(source: any, target: any) {
+//   for (const [k, v] of target) {
+//     if (k in source) continue
+//     source[k] = v;
+//   }
+// }
+
 export function createExtendParams(allParams: Record<string, any>) {
   return function extendParams(
     userParams: Record<string, any>,
