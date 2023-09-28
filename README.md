@@ -4,3 +4,7 @@
 
 - [x] `List`插件参考了[swiper](https://github.com/nolimits4web/swiper)的实现.
 - [ ] 参考[dva-core](https://github.com/dvajs/dva/tree/master/packages/dva-core)实现.
+
+## Example
+
+[Live Demo](https://pinghuazhuang.github.io/component-plugin-system)
