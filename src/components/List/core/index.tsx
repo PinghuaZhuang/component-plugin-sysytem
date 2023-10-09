@@ -17,19 +17,20 @@ type EventNoop = (
   handler: (event: any, context: Parameters<Plugin>[0]) => void,
 ) => void;
 
-export type Plugin = (pluginOption: {
+export type Plugin = { pluginName: string } & ((pluginOption: {
   extendsParams: ReturnType<typeof createExtendParams>;
   on: EventNoop;
   once: EventNoop;
   off: EventNoop;
   emit: (eventName: string, event: any) => void;
-}) => void | (() => void);
+}) => void | (() => void));
 
 export interface ListProps {
   options: Item[];
   plugins?: Plugin[];
   onInit?: (option: HookOption) => void;
   onMounted?: (option: HookOption) => void;
+  onUninstall?: (pluginName: string) => void;
   // onSort?: () => ListProps['options'];
 }
 

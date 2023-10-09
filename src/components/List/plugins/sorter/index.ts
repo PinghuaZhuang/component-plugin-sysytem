@@ -42,4 +42,6 @@ const Sorter: Plugin = (methods) => {
   }
 };
 
+Sorter.pluginName = 'Sorter';
+
 export default Sorter;

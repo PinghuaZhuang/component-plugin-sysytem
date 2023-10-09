@@ -25,9 +25,9 @@ export function useInit(
 
     plugins?.forEach((mod) => {
       const uninstall = mod(methods);
-      uninstallHandlers[mod.name] = () => {
+      uninstallHandlers[mod.pluginName] = () => {
         if (uninstall == null) {
-          console.warn(`>>> ${mod.name} 插件没有卸载方法.`);
+          console.warn(`>>> ${mod.pluginName} 插件没有卸载方法.`);
           return;
         }
         const index = plugins.findIndex((o) => o === mod);
@@ -43,6 +43,7 @@ export function useInit(
       uninstall(name) {
         if (uninstallHandlers[name]) {
           uninstallHandlers[name]();
+          emiter.emit('uninstall', name);
         }
       },
     };

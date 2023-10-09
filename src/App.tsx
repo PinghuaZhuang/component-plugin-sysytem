@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import './App.css';
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import List from './components/List';
 import Sorter from './components/List/plugins/sorter';
 
@@ -17,16 +17,18 @@ function App() {
     on('sort:sort', console.log);
   }, []);
 
-  const plugins = [Sorter];
+  const [plugins, setPlugins] = useState([Sorter]);
 
   const uninstallSorter = useCallback(() => {
-    ListRef.current?.uninstall(Sorter.name);
-  }, []);
+    ListRef.current?.uninstall(Sorter.pluginName);
+    plugins.splice(plugins.findIndex(o => o.pluginName === Sorter.pluginName), 1);
+    setPlugins([...plugins]);
+  }, [plugins]);
 
   return (
     <div>
       <h3>List component</h3>
-      <h4>Plugins: {plugins.map((o) => o.name).join(', ')}</h4>
+      <h4>Plugins: {plugins.map((o) => o.pluginName).join(', ')}</h4>
       <div>
         <button
           style={{
@@ -37,6 +39,8 @@ function App() {
         >
           卸载 Sorter
         </button>
+        <div>组件并不会重新走一遍生命周期, 所以不建议重新安装.</div>
+        <div>可以通过修改key的方式装卸载.</div>
       </div>
       <div>
         <List
